@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Kerala hill country: tea-estate green, wet laterite, ridge mist */
+  --color-canopy: #0f2a1d;
+  --color-canopy-deep: #0b1a12;
+  --color-laterite: #c2703d;
+  --color-mist: #e8ede7;
+  --color-paper: #f7f5f0;
+  --color-ink: #0b0f0c;
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Ridge line: the trail profile that separates every section */
+.ridge {
+  display: block;
+  width: 100%;
+  height: 44px;
+}
+
+/* Hero type sits on the ridge; letterforms echo the wordmark's high contrast */
+.wordmark-serif {
+  font-family: var(--font-display), Georgia, serif;
+  font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 120;
+}
+
+@keyframes climb {
+  from {
+    stroke-dashoffset: var(--dash, 2400);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.trail-draw {
+  stroke-dasharray: var(--dash, 2400);
+  animation: climb 2.4s cubic-bezier(0.33, 0.9, 0.35, 1) forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .trail-draw,
+  .rise {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: none;
+  }
 }
