@@ -1,13 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Kerala hill country: tea-estate green, wet laterite, ridge mist */
-  --color-canopy: #0f2a1d;
-  --color-canopy-deep: #0b1a12;
-  --color-laterite: #c2703d;
-  --color-mist: #e8ede7;
-  --color-paper: #f7f5f0;
-  --color-ink: #0b0f0c;
+  /* Black, white and gold. The names are kept from the original palette so
+     the whole site re-skins from this block alone — `canopy` is the dark
+     ground, `paper`/`mist` the light grounds, `laterite` the gold accent.
+
+     Two golds, because one cannot serve both grounds: a gold bright enough
+     to glow on near-black washes out on white. `laterite` is the light-warm
+     tone used on dark; `laterite-deep` is the darker, browner tone used on
+     paper, where it clears 4.5:1 against white for body-sized text. */
+  --color-canopy: #14161a;
+  --color-canopy-deep: #090a0c;
+  --color-laterite: #c9a227;
+  --color-laterite-deep: #8a6d12;
+  --color-mist: #f4f4f3;
+  --color-paper: #fafaf8;
+  --color-ink: #101214;
 
   --font-display: var(--font-display);
   --font-body: var(--font-body);
@@ -15,6 +23,22 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Photographs are desaturated so the colour images sit inside the
+   black-and-white scheme instead of fighting it. */
+.mono-photo {
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* The accent grey is deliberately low-contrast, which is wrong for form
+   errors — they need to read as errors, so they keep a true tone. */
+.form-error {
+  color: #b4232a;
+}
+
+.form-error-border {
+  border-color: #b4232a;
 }
 
 body {
