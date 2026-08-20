@@ -98,6 +98,73 @@ export const TRIPS = [
   },
 ] as const;
 
+/* ⚠️ PLACEHOLDER REVIEWS — NOT REAL CUSTOMERS. Replace before the site goes
+   live, or delete the section from the home page.
+
+   These exist so the layout can be judged; publishing invented testimonials
+   as if they were real is a false-advertising problem, not just a style one.
+
+   The on-page "sample reviews" disclaimer was removed at the client's
+   request, so the `name` field reading "Sample review" is now the ONLY
+   thing on the page marking these as fake. Keep it that way until real
+   quotes replace them — do not put plausible customer names on invented
+   testimonials.
+
+   Once genuine reviews are in, flip REVIEWS_ARE_REAL and only THEN consider
+   AggregateRating structured data. Adding that markup while these
+   placeholders are live breaches Google's review-snippet policy and risks a
+   manual penalty on the whole domain.
+
+   The flag no longer drives any UI — the heading reads "What our guests say"
+   either way. It is kept as the single place that records whether the quotes
+   below are genuine, so the answer is not buried in a comment. */
+export const REVIEWS_ARE_REAL = false;
+
+export const REVIEWS = [
+  {
+    quote:
+      "They rebuilt our whole itinerary the night before when the weather turned, and we still saw everything we came for. The driver knew exactly which roads were passable.",
+    name: "Sample review",
+    from: "Bengaluru",
+    trip: "Munnar Hill Country",
+  },
+  {
+    quote:
+      "The houseboat was moored away from the main channel, so we woke up to nothing but birds and the water. Not the crowded stretch you see in photos.",
+    name: "Sample review",
+    from: "London",
+    trip: "Alleppey & the Backwaters",
+  },
+  {
+    quote:
+      "We had two small children and were expecting to compromise. They planned around nap times, kept the drives short and found places the kids actually enjoyed.",
+    name: "Sample review",
+    from: "Dubai",
+    trip: "Kerala Grand Tour",
+  },
+  {
+    quote:
+      "Booked three days out and still got a proper itinerary rather than a stock one. They asked what we wanted out of the trip before quoting anything.",
+    name: "Sample review",
+    from: "Mumbai",
+    trip: "Munnar Hill Country",
+  },
+  {
+    quote:
+      "The guide at Periyar spotted a herd across the water we'd have driven straight past. Twenty minutes later they were on the bank in front of us.",
+    name: "Sample review",
+    from: "Singapore",
+    trip: "Thekkady Wildlife & Spice",
+  },
+  {
+    quote:
+      "No pressure to add extras, and they told us plainly which of the paid stops were worth it and which we could skip. That honesty is why we'd use them again.",
+    name: "Sample review",
+    from: "Chennai",
+    trip: "Munnar Hill Country",
+  },
+] as const;
+
 /* The three-day Munnar circuit.
    `ticketed: true` marks a stop that charges its own entry or activity fee at
    the gate. We deliberately do not publish those amounts — operators change

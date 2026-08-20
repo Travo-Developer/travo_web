@@ -35,6 +35,10 @@ yarn-error.log*
 # ...but the template carries no secrets and documents the required vars.
 !.env.example
 
+# Unprocessed photo originals (phone/WhatsApp dumps). Kept locally as the
+# source for public/images/gallery/*, not served and not worth versioning.
+/source-photos
+
 # vercel
 .vercel
 

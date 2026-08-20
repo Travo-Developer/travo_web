@@ -55,6 +55,55 @@ The form includes a hidden honeypot field (`company`). Submissions that fill it
 are silently accepted and discarded. If spam becomes a problem, add rate
 limiting or a CAPTCHA in the Server Action.
 
+## Customer reviews
+
+⚠️ **The reviews on the home page are placeholders, not real customers.**
+Replace or remove them before the site goes live — publishing invented
+testimonials as genuine is false advertising, not just a content gap.
+
+To swap in real ones, edit `REVIEWS` in [`lib/site.ts`](lib/site.ts) and set
+`REVIEWS_ARE_REAL = true`. That flag drives no UI — it records whether the
+quotes are genuine, and gates whether it's safe to add rating markup (below).
+
+The on-page "sample reviews" note was removed by request, so each card's name
+field reading **"Sample review"** is now the only thing marking these as not
+genuine. Leave it until real quotes go in — putting plausible customer names
+on invented testimonials is the thing to avoid.
+
+The home page runs them as an endless scrolling marquee
+([`app/components/reviews-carousel.tsx`](app/components/reviews-carousel.tsx)),
+paused on hover or keyboard focus so a card can actually be read.
+
+Add or remove entries from `REVIEWS` freely — the track renders the list
+twice and slides exactly -50%, so the loop is seamless at any length, and the
+duration scales with the count to hold the speed constant. To change the
+speed, edit the `REVIEWS.length * 11` multiplier in that file (higher =
+slower).
+
+Two things to leave alone unless you understand the knock-on: the second copy
+of the list is `aria-hidden`, so screen readers announce each review once
+rather than twice; and `.review-track`'s `padding-right` must stay equal to
+the track's `gap-6` (1.5rem), or the seam at the loop point becomes visible.
+
+Under `prefers-reduced-motion` the animation stops and the strip becomes a
+snap-scrolling row — freezing it outright would strand most reviews
+off-screen with no way to reach them.
+
+Google and TripAdvisor reviews are fine to quote — use the reviewer's name as
+it appears publicly, and don't edit the wording beyond trimming.
+
+### Star ratings in search results
+
+There is deliberately **no `AggregateRating` structured data**. It's what
+produces gold stars under a Google result, so it's tempting, but Google
+requires the ratings to be genuine and collected by you. Adding it against
+placeholder reviews breaches the review-snippet policy and risks a manual
+penalty on the whole domain.
+
+Once you have real reviews, add an `aggregateRating` block to the
+`TravelAgency` node in [`app/layout.tsx`](app/layout.tsx) with your true
+average and review count.
+
 ## SEO
 
 Set `NEXT_PUBLIC_SITE_URL` to the live domain **before deploying**. Canonical
@@ -86,8 +135,7 @@ the street address and postcode there if they're not exact.
 
 - No Google Search Console verification token. Add one to `metadata.verification`
   in [`app/layout.tsx`](app/layout.tsx) when you have it.
-- No reviews/ratings markup. `AggregateRating` needs genuine reviews — adding it
-  without them violates Google's guidelines and can earn a manual penalty.
+- No reviews/ratings markup — see [Customer reviews](#customer-reviews) above.
 
 ## Editing content
 
@@ -135,6 +183,17 @@ file, then delete the `credit` field from its entry in the `SHOTS` array.
 
 Four of the photos also appear on the tour cards, wired through the `image`
 field on `TRIPS` in [`lib/site.ts`](lib/site.ts).
+
+### Travo's own photos
+
+Eight tiles (`jeep-*.jpg`) are Travo's own fleet photography and carry **no
+`credit`** — the attribution line under the grid covers the licensed stock
+only. Each one that replaces a stock image is one fewer CC BY-SA obligation.
+
+Unedited originals (phone/WhatsApp dumps) live in `source-photos/`, which is
+gitignored and outside `public/` so they aren't deployed. Keep new batches
+there and export processed copies into `public/images/gallery/` rather than
+pointing the site at a folder of full-size originals.
 
 To add a photo: drop it in `public/images/gallery/`, add an entry to `SHOTS`
 with `src`, `label` and `caption`. Around 1200×900 and under ~250KB keeps the

@@ -90,6 +90,33 @@ body {
   animation: rise 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) both;
 }
 
+/* Endless review marquee. The track is two copies of the list, so travelling
+   exactly -50% lands the first copy where the second started — the loop point
+   is invisible. Uses translate3d to stay on the compositor rather than
+   repainting every frame. */
+@keyframes review-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.review-track {
+  animation: review-scroll var(--marquee-duration, 60s) linear infinite;
+  /* The gap between cards is part of the -50%, so the track needs the same
+     trailing gap for the seam to line up. Must match the `gap-6` on the
+     track (1.5rem) — change both together. */
+  padding-right: 1.5rem;
+}
+
+/* Reading a moving target is hard — let people stop it. */
+.review-marquee:hover .review-track,
+.review-marquee:focus-within .review-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -101,5 +128,22 @@ body {
     stroke-dashoffset: 0;
     opacity: 1;
     transform: none;
+  }
+
+  /* Freezing the marquee would strand every review past the second one
+     off-screen with no way to reach them, so hand scrolling back to the
+     user instead of animating it. */
+  .review-track {
+    animation: none;
+    padding-right: 0;
+  }
+
+  .review-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .review-track > li {
+    scroll-snap-align: start;
   }
 }

@@ -33,15 +33,65 @@ type Shot = {
   credit?: string;
   /** Tiles marked wide span two columns on desktop to break the grid rhythm. */
   wide?: boolean;
+  /* Portrait source. Cropping these to the 4:3 default puts the subject
+     out of frame, so they keep a 3:4 tile and span two rows instead. */
+  tall?: boolean;
 };
 
 const SHOTS: Shot[] = [
+  /* Travo's own photographs — no `credit`, since the attribution line below
+     the grid covers the licensed stock only. */
+  {
+    src: "/images/gallery/jeep-ridge.jpg",
+    label: "The Ridge",
+    caption: "Cloud spilling over the peak, and the whole plain below.",
+    tall: true,
+  },
   {
     src: "/images/gallery/munnar-tea.jpg",
     label: "Munnar",
     caption: "Estate roads through the tea gardens of the high range.",
     credit: "Shino Jacob Koottanad",
-    wide: true,
+  },
+  {
+    src: "/images/gallery/jeep-mist.jpg",
+    label: "Into the Mist",
+    caption: "The hairpins above Munnar, early, before the cloud lifts.",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/jeep-road.jpg",
+    label: "On the Road",
+    caption: "Climbing the estate road through the eucalyptus.",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/jeep-tea.jpg",
+    label: "Our Fleet",
+    caption: "Parked in the tea, waiting for the cloud to burn off.",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/jeep-blue.jpg",
+    label: "Tea Country",
+    caption: "The estates behind, the whole day ahead.",
+  },
+  {
+    src: "/images/gallery/jeep-festival.jpg",
+    label: "Festival Day",
+    caption: "Garlanded for the temple festival, as every jeep here is.",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/jeep-fleet.jpg",
+    label: "Ready to Go",
+    caption: "Lined up at the stand before the morning run.",
+  },
+  {
+    src: "/images/gallery/jeep-boulder.jpg",
+    label: "Off the Tar",
+    caption: "Where the surfaced road gives out and the estate track begins.",
+    tall: true,
   },
   {
     src: "/images/gallery/mattupetty.jpg",
@@ -148,13 +198,27 @@ export default function GalleryPage() {
 
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* auto-rows + dense flow so the row-spanning portrait tiles slot
+              in without leaving gaps in the grid. */}
+          <ul className="grid grid-cols-1 gap-4 sm:auto-rows-60 sm:grid-flow-dense sm:grid-cols-2 lg:grid-cols-3">
             {SHOTS.map((shot, i) => (
               <li
                 key={shot.src}
-                className={shot.wide ? "sm:col-span-2" : undefined}
+                className={
+                  shot.wide
+                    ? "sm:col-span-2 sm:row-span-2"
+                    : shot.tall
+                      ? "sm:row-span-2"
+                      : "sm:row-span-1"
+                }
               >
-                <figure className="group relative flex aspect-4/3 flex-col justify-end overflow-hidden rounded-lg bg-canopy">
+                <figure
+                  /* Mobile is a single column, so each tile keeps its natural
+                     ratio there; on desktop the grid row height governs. */
+                  className={`group relative flex flex-col justify-end overflow-hidden rounded-lg bg-canopy sm:aspect-auto sm:h-full ${
+                    shot.tall ? "aspect-3/4" : "aspect-4/3"
+                  }`}
+                >
                   <Image
                     src={shot.src}
                     alt={`${shot.label}, Kerala — ${shot.caption}`}

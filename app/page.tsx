@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "./components/site-header";
+import { ReviewsCarousel } from "./components/reviews-carousel";
 import { PHONE_TEL, RIDGE_PATH, TRIPS } from "@/lib/site";
 
 export default function Home() {
@@ -155,6 +156,27 @@ export default function Home() {
             See the full 3-day Munnar itinerary
             <span aria-hidden="true">→</span>
           </Link>
+        </section>
+
+        {/* ── Reviews ──────────────────────────────────────────── */}
+        <section
+          aria-labelledby="reviews-heading"
+          className="border-t border-ink/10 bg-mist/60"
+        >
+          <div className="py-20 sm:py-24">
+            <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
+              <h2
+                id="reviews-heading"
+                className="wordmark-serif text-center text-3xl tracking-tight sm:text-4xl"
+              >
+                What our guests say
+              </h2>
+            </div>
+
+            {/* Full-bleed: the strip should run edge to edge rather than stop
+                at the container, so cards drift in from off-screen. */}
+            <ReviewsCarousel />
+          </div>
         </section>
 
         {/* ── What's included ──────────────────────────────────── */}
