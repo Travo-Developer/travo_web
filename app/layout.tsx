@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Archivo } from "next/font/google";
+import { Playfair_Display, Archivo } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "./components/site-footer";
 import {
@@ -10,10 +10,9 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
-const display = Fraunces({
+const display = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const body = Archivo({

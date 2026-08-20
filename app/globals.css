@@ -56,9 +56,10 @@ body {
 }
 
 /* Hero type sits on the ridge; letterforms echo the wordmark's high contrast */
+/* Playfair Display. No font-variation-settings — its only axis is weight,
+   which the font-* utilities already control. */
 .wordmark-serif {
   font-family: var(--font-display), Georgia, serif;
-  font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 120;
 }
 
 @keyframes climb {
