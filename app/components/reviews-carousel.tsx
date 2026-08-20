@@ -1,4 +1,4 @@
-import { REVIEWS } from "@/lib/site";
+import { REVIEWS, REVIEWS_ARE_REAL } from "@/lib/site";
 
 /* Endless marquee. The track holds two identical copies of the list and
    slides exactly -50%, so the moment it completes the first copy sits
@@ -68,16 +68,23 @@ function ReviewCard({
           <path d="M13.4 24V13.2C13.4 5.9 17.8 1 25.4 0l1.2 3.4c-4.3 1-6.6 3.6-6.9 7.2h5.6V24H13.4ZM0 24V13.2C0 5.9 4.4 1 12 0l1.2 3.4c-4.3 1-6.6 3.6-6.9 7.2h5.6V24H0Z" />
         </svg>
 
-        <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed text-ink/75">
+        <blockquote className="mt-5 text-[0.95rem] leading-relaxed text-ink/75">
           {review.quote}
         </blockquote>
 
-        <figcaption className="mt-6 border-t border-ink/10 pt-5">
-          <p className="text-sm text-ink/85">{review.name}</p>
-          <p className="mt-1 text-xs uppercase tracking-[0.14em] text-ink/45">
-            {review.from} · {review.trip}
-          </p>
-        </figcaption>
+        {/* No attribution at all while the quotes are placeholders: an
+            invented testimonial with a name or origin against it reads as a
+            real customer. Flipping REVIEWS_ARE_REAL brings back the name and
+            the city · trip line together, once there is something true to
+            attribute. */}
+        {REVIEWS_ARE_REAL && (
+          <figcaption className="mt-6 border-t border-ink/10 pt-5">
+            <p className="text-sm text-ink/85">{review.name}</p>
+            <p className="mt-1 text-xs uppercase tracking-[0.14em] text-ink/45">
+              {review.from} · {review.trip}
+            </p>
+          </figcaption>
+        )}
       </figure>
     </li>
   );

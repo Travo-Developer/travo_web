@@ -62,13 +62,16 @@ Replace or remove them before the site goes live — publishing invented
 testimonials as genuine is false advertising, not just a content gap.
 
 To swap in real ones, edit `REVIEWS` in [`lib/site.ts`](lib/site.ts) and set
-`REVIEWS_ARE_REAL = true`. That flag drives no UI — it records whether the
-quotes are genuine, and gates whether it's safe to add rating markup (below).
+`REVIEWS_ARE_REAL = true`.
 
-The on-page "sample reviews" note was removed by request, so each card's name
-field reading **"Sample review"** is now the only thing marking these as not
-genuine. Leave it until real quotes go in — putting plausible customer names
-on invented testimonials is the thing to avoid.
+While that flag is `false` the carousel shows **the quote only** — no name, no
+city, no trip — so a placeholder can't read as a real person's testimonial.
+Flipping it to `true` restores the full attribution footer (name, then
+city · trip). Only flip it once the quotes are genuine, or the cards will
+display "Sample review" as though it were a customer.
+
+The `name`, `from` and `trip` fields are still required on every entry; they
+are simply not rendered while the flag is off.
 
 The home page runs them as an endless scrolling marquee
 ([`app/components/reviews-carousel.tsx`](app/components/reviews-carousel.tsx)),

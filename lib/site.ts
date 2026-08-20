@@ -104,20 +104,17 @@ export const TRIPS = [
    These exist so the layout can be judged; publishing invented testimonials
    as if they were real is a false-advertising problem, not just a style one.
 
-   The on-page "sample reviews" disclaimer was removed at the client's
-   request, so the `name` field reading "Sample review" is now the ONLY
-   thing on the page marking these as fake. Keep it that way until real
-   quotes replace them — do not put plausible customer names on invented
-   testimonials.
+   REVIEWS_ARE_REAL is false, so the carousel hides the `name` on every card
+   and shows only city + trip. That is deliberate: an invented quote with a
+   person's name against it reads as a real testimonial, whereas a place and
+   a trip claims nothing untrue. The names below stay "Sample review" as a
+   backstop — if the flag is ever flipped before real quotes land, the cards
+   say so rather than inventing a customer.
 
-   Once genuine reviews are in, flip REVIEWS_ARE_REAL and only THEN consider
-   AggregateRating structured data. Adding that markup while these
-   placeholders are live breaches Google's review-snippet policy and risks a
-   manual penalty on the whole domain.
-
-   The flag no longer drives any UI — the heading reads "What our guests say"
-   either way. It is kept as the single place that records whether the quotes
-   below are genuine, so the answer is not buried in a comment. */
+   Once genuine reviews are in: replace these entries, flip the flag to
+   surface the names, and only THEN consider AggregateRating structured
+   data. Adding that markup while placeholders are live breaches Google's
+   review-snippet policy and risks a manual penalty on the whole domain. */
 export const REVIEWS_ARE_REAL = false;
 
 export const REVIEWS = [
