@@ -104,17 +104,21 @@ export const TRIPS = [
    These exist so the layout can be judged; publishing invented testimonials
    as if they were real is a false-advertising problem, not just a style one.
 
-   REVIEWS_ARE_REAL is false, so the carousel hides the `name` on every card
-   and shows only city + trip. That is deliberate: an invented quote with a
-   person's name against it reads as a real testimonial, whereas a place and
-   a trip claims nothing untrue. The names below stay "Sample review" as a
-   backstop — if the flag is ever flipped before real quotes land, the cards
-   say so rather than inventing a customer.
+   REVIEWS_ARE_REAL is false, so the carousel shows the quote and stars only
+   — no name, city or trip. Attribution is what makes an invented quote read
+   as a real customer's words. The names below stay "Sample review" as a
+   backstop: if the flag is flipped before real quotes land, the cards say so
+   rather than inventing a customer.
+
+   `rating` is out of 5 and drives the stars on each card. The stars are
+   presentational only — they carry NO AggregateRating structured data, so
+   they cannot produce (or falsify) rating snippets in search results.
 
    Once genuine reviews are in: replace these entries, flip the flag to
-   surface the names, and only THEN consider AggregateRating structured
-   data. Adding that markup while placeholders are live breaches Google's
-   review-snippet policy and risks a manual penalty on the whole domain. */
+   surface the attribution, and only THEN add AggregateRating to the
+   TravelAgency node in app/layout.tsx. That markup against placeholder
+   reviews breaches Google's review-snippet policy and risks a manual
+   penalty on the whole domain. */
 export const REVIEWS_ARE_REAL = false;
 
 export const REVIEWS = [
@@ -124,6 +128,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "Bengaluru",
     trip: "Munnar Hill Country",
+    rating: 5,
   },
   {
     quote:
@@ -131,6 +136,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "London",
     trip: "Alleppey & the Backwaters",
+    rating: 5,
   },
   {
     quote:
@@ -138,6 +144,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "Dubai",
     trip: "Kerala Grand Tour",
+    rating: 5,
   },
   {
     quote:
@@ -145,6 +152,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "Mumbai",
     trip: "Munnar Hill Country",
+    rating: 4,
   },
   {
     quote:
@@ -152,6 +160,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "Singapore",
     trip: "Thekkady Wildlife & Spice",
+    rating: 5,
   },
   {
     quote:
@@ -159,6 +168,7 @@ export const REVIEWS = [
     name: "Sample review",
     from: "Chennai",
     trip: "Munnar Hill Country",
+    rating: 5,
   },
 ] as const;
 

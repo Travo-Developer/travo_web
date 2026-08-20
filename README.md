@@ -73,6 +73,13 @@ display "Sample review" as though it were a customer.
 The `name`, `from` and `trip` fields are still required on every entry; they
 are simply not rendered while the flag is off.
 
+### Stars
+
+Each entry has a `rating` (out of 5) which draws the stars on its card. These
+are **presentational only** — they carry no structured data, so they cannot
+produce or falsify a rating snippet in search results. See below for the
+markup that does.
+
 The home page runs them as an endless scrolling marquee
 ([`app/components/reviews-carousel.tsx`](app/components/reviews-carousel.tsx)),
 paused on hover or keyboard focus so a card can actually be read.

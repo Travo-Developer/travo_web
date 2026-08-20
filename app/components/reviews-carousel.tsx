@@ -46,6 +46,34 @@ export function ReviewsCarousel() {
   );
 }
 
+/* Presentational only. Deliberately carries no schema.org rating markup —
+   see the note in lib/site.ts. */
+function Stars({ rating }: { rating: number }) {
+  const filled = Math.round(rating);
+
+  return (
+    <p className="flex items-center gap-1">
+      {/* The glyphs are decorative; the rating is announced once as text. */}
+      <span className="sr-only">{rating} out of 5</span>
+      {Array.from({ length: 5 }, (_, i) => (
+        <svg
+          key={i}
+          aria-hidden="true"
+          viewBox="0 0 20 19"
+          /* Deep gold, not the bright accent: on the near-white card the
+             bright tone measures 2.3:1, too faint for shapes this small. */
+          className={`h-3.5 w-3.5 ${
+            i < filled ? "text-laterite-deep" : "text-ink/15"
+          }`}
+          fill="currentColor"
+        >
+          <path d="M10 0l2.9 6.2 6.6.9-4.8 4.8 1.2 6.8L10 15.5 4.1 18.7l1.2-6.8L.5 7.1l6.6-.9L10 0z" />
+        </svg>
+      ))}
+    </p>
+  );
+}
+
 function ReviewCard({
   review,
   duplicate = false,
@@ -59,14 +87,7 @@ function ReviewCard({
       className="w-76 shrink-0 sm:w-96"
     >
       <figure className="flex h-full flex-col rounded-lg border border-ink/10 bg-paper p-7">
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 32 24"
-          className="h-5 w-7 shrink-0 text-laterite-deep/45"
-          fill="currentColor"
-        >
-          <path d="M13.4 24V13.2C13.4 5.9 17.8 1 25.4 0l1.2 3.4c-4.3 1-6.6 3.6-6.9 7.2h5.6V24H13.4ZM0 24V13.2C0 5.9 4.4 1 12 0l1.2 3.4c-4.3 1-6.6 3.6-6.9 7.2h5.6V24H0Z" />
-        </svg>
+        <Stars rating={review.rating} />
 
         <blockquote className="mt-5 text-[0.95rem] leading-relaxed text-ink/75">
           {review.quote}
