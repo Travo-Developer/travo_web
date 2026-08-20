@@ -106,17 +106,40 @@ activity fee are flagged with `ticketed: true` in `ITINERARY` and render as
 show an amount instead, add the figure to the stop and render it in
 [`app/packages/page.tsx`](app/packages/page.tsx).
 
-## Gallery images
+## Photographs
 
-Tiles in [`app/gallery/page.tsx`](app/gallery/page.tsx) render a placeholder
-until a photo is supplied. To add one:
+`public/images/gallery/` holds 15 Kerala photos sourced from **Wikimedia
+Commons**, cropped to 4:3. They cover Munnar, Alleppey, Kumarakom, Thekkady,
+Fort Kochi, Varkala and Kovalam.
 
-1. Drop the file in `public/images/gallery/`.
-2. On that tile's entry in the `SHOTS` array, set `src` to the path and
-   `ready: true`.
+**Photographs are in colour; the interface is black, white and gold.** That
+split is deliberate — the monochrome UI carries the design, while the images
+show the green tea terraces, backwater blues and Kathakali costume that
+actually sell a Kerala trip. Greyscale flattened all three into the same mid
+grey. Don't desaturate the photos to "match" the palette.
 
-Photos are desaturated in CSS (`.mono-photo`) to suit the black-and-white
-design — no need to convert them first.
+**These are placeholders — replace them with Travo's own photos.** Stock
+images of Kerala appear on hundreds of competing sites, and your own trip
+photos will always sell the business better.
+
+### Licensing — please read
+
+Most of these files are **CC BY-SA**, which legally requires crediting the
+photographer wherever the image appears. That credit is the small line under
+the gallery grid in [`app/gallery/page.tsx`](app/gallery/page.tsx) — do not
+delete it while those images are in use. Per-file licence, author and source
+URL are recorded in `public/images/gallery/CREDITS.json`.
+
+Replacing a stock photo with your own removes that obligation: overwrite the
+file, then delete the `credit` field from its entry in the `SHOTS` array.
+
+Four of the photos also appear on the tour cards, wired through the `image`
+field on `TRIPS` in [`lib/site.ts`](lib/site.ts).
+
+To add a photo: drop it in `public/images/gallery/`, add an entry to `SHOTS`
+with `src`, `label` and `caption`. Around 1200×900 and under ~250KB keeps the
+grid quick. (`.mono-photo` in `globals.css` will desaturate a single image if
+one ever clashes badly — it is not used by default.)
 
 ## Design
 

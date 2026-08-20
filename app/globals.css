@@ -25,8 +25,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Photographs are desaturated so the colour images sit inside the
-   black-and-white scheme instead of fighting it. */
+/* Opt-in desaturation. The interface is monochrome but photographs are in
+   colour — Kerala's greens and blues are the thing being sold. Use this only
+   on a one-off image that clashes with the palette. */
 .mono-photo {
   filter: grayscale(1) contrast(1.05);
 }

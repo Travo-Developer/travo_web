@@ -4,7 +4,7 @@ import { ContactForm } from "./contact-form";
 import { EMAIL, PHONE_DISPLAY, PHONE_TEL, SITE_URL, WHATSAPP } from "@/lib/site";
 
 const DESCRIPTION =
-  "Enquire about a Kerala tour — send us your dates and group size, or call and WhatsApp us directly. We answer in Malayalam, Tamil, Hindi and English.";
+  "Enquire about a Kerala tour — send us your dates and group size, or call and WhatsApp us directly. We answer in Malayalam, Tamil and English.";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,7 +30,7 @@ const contactLd = {
       telephone: PHONE_TEL,
       email: EMAIL,
       contactType: "reservations",
-      availableLanguage: ["Malayalam", "Tamil", "Hindi", "English"],
+      availableLanguage: ["Malayalam", "Tamil", "English"],
       areaServed: "IN",
     },
   },
@@ -54,7 +54,7 @@ export default function ContactPage() {
             <span className="italic text-laterite">We&apos;ll do the rest.</span>
           </>
         }
-        intro="Send your dates and group size and we'll come back with an itinerary and a quote. We answer in Malayalam, Tamil, Hindi and English."
+        intro="Send your dates and group size and we'll come back with an itinerary and a quote. We answer in Malayalam, Tamil and English."
       />
 
       <main className="flex-1">

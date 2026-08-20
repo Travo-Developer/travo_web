@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageHero } from "../components/page-hero";
 
 const DESCRIPTION =
-  "Photographs from our Kerala tours — Munnar tea gardens, waterfalls, viewpoints, backwaters and the spice country.";
+  "Photographs from across Kerala — the Munnar tea gardens, Alleppey backwaters, Periyar wildlife, Fort Kochi and the coast.";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -18,48 +18,117 @@ export const metadata: Metadata = {
   },
 };
 
-/* Drop a file at `public/images/gallery/<src>` and the placeholder for that
-   tile is replaced automatically — set `ready: true` on the entry.
-   Only hero-jeep.jpg ships with the site today, so the rest render as
-   labelled panels rather than broken images. */
+/* Photographs are Wikimedia Commons files, desaturated at build time to sit
+   inside the black-and-white design. `credit` is the photographer — most are
+   CC BY-SA, which requires attribution, so the line under the grid is a
+   licence obligation and not decoration. Full record, including licence and
+   source URL per file, is in public/images/gallery/CREDITS.json.
+
+   Replace any of these with a real Travo photo by overwriting the file in
+   public/images/gallery/ and dropping the `credit` field. */
 type Shot = {
+  src: string;
   label: string;
   caption: string;
-  src?: string;
-  ready?: boolean;
+  credit?: string;
   /** Tiles marked wide span two columns on desktop to break the grid rhythm. */
   wide?: boolean;
 };
 
 const SHOTS: Shot[] = [
   {
+    src: "/images/gallery/munnar-tea.jpg",
     label: "Munnar",
-    caption: "The tea estates at first light, 7,130 ft.",
-    src: "/images/hero-jeep.jpg",
-    ready: true,
+    caption: "Estate roads through the tea gardens of the high range.",
+    credit: "Shino Jacob Koottanad",
     wide: true,
   },
-  { label: "Rose Garden", caption: "Day 1 — the first stop on the circuit." },
-  { label: "Mattupetty Dam", caption: "Day 1 — still water under the ridge." },
   {
-    label: "Sun Moon Valley",
-    caption: "Day 1 — boating below the tea slopes.",
+    src: "/images/gallery/mattupetty.jpg",
+    label: "Mattupetty Dam",
+    caption: "Day 1 — still water under the ridge.",
+    credit: "Shanmugamp7",
   },
-  { label: "Echo Point", caption: "Day 1 — the valley answers back." },
-  { label: "Kundala Lake", caption: "Day 1 — cherry blossom in season." },
-  { label: "Top Station", caption: "Day 1 — the view into Tamil Nadu.", wide: true },
-  { label: "Tea Garden View", caption: "Day 2 — the estates from the track." },
-  { label: "Verivari Waterfall", caption: "Day 2 — cold water, warm day." },
-  { label: "Cave Visit", caption: "Day 2 — the walk into the hillside." },
   {
-    label: "Mountain View Point",
-    caption: "Day 2 — the Western Ghats in layers.",
+    src: "/images/gallery/echo-point.jpg",
+    label: "Echo Point",
+    caption: "Day 1 — the valley answers back.",
+    credit: "BinoBose",
   },
-  { label: "Blossom Park", caption: "Day 2 — the last light stop." },
-  { label: "Attukad Waterfall", caption: "Day 3 — the morning descent.", wide: true },
-  { label: "Spice Plantation", caption: "Day 3 — cardamom, pepper, vanilla." },
-  { label: "Adventure Park", caption: "Day 3 — the zip line over the valley." },
-  { label: "Elephant Ride", caption: "Day 3 — an afternoon at the camp." },
+  {
+    src: "/images/gallery/kundala.jpg",
+    label: "Kundala Lake",
+    caption: "Day 1 — cherry blossom in season.",
+    credit: "Darshanhr.007",
+  },
+  {
+    src: "/images/gallery/top-station.jpg",
+    label: "Top Station",
+    caption: "Day 1 — the highway to the Tamil Nadu border.",
+    credit: "Rainer Halama",
+  },
+  {
+    src: "/images/gallery/attukad.jpg",
+    label: "Athirappilly Falls",
+    caption: "Kerala's widest waterfall, in full monsoon flow.",
+    credit: "Vis M",
+  },
+  {
+    src: "/images/gallery/spice.jpg",
+    label: "The High Range",
+    caption: "Sunrise over the tea plantations and the ranges beyond.",
+    credit: "LiteraryDP",
+    wide: true,
+  },
+  {
+    src: "/images/gallery/alleppey.jpg",
+    label: "Alleppey",
+    caption: "A night on the backwaters, moored among the palms.",
+    credit: "Ingo Mehling",
+  },
+  {
+    src: "/images/gallery/kumarakom.jpg",
+    label: "Kumarakom",
+    caption: "The Vembanad wetlands at first light.",
+    credit: "Rainer Halama",
+  },
+  {
+    src: "/images/gallery/thekkady.jpg",
+    label: "Periyar Lake",
+    caption: "Boat safari through the drowned forest at Thekkady.",
+    credit: "Wouter Hagens",
+  },
+  {
+    src: "/images/gallery/elephant.jpg",
+    label: "Wild Elephants",
+    caption: "A herd in the forest reserves of the Western Ghats.",
+    credit: "N. A. Nazeer",
+  },
+  {
+    src: "/images/gallery/kochi.jpg",
+    label: "Fort Kochi",
+    caption: "The Chinese fishing nets before the monsoon.",
+    credit: "Vis M",
+    wide: true,
+  },
+  {
+    src: "/images/gallery/kathakali.jpg",
+    label: "Kathakali",
+    caption: "An evening of Kerala's classical theatre.",
+    credit: "WonderFrames",
+  },
+  {
+    src: "/images/gallery/varkala.jpg",
+    label: "Varkala",
+    caption: "The cliff promenade above the Arabian Sea.",
+    credit: "Sunaina Pai & Susam Pal",
+  },
+  {
+    src: "/images/gallery/kovalam.jpg",
+    label: "Kovalam",
+    caption: "The lighthouse beach at the end of the road south.",
+    credit: "Amitbalani",
+  },
 ];
 
 export default function GalleryPage() {
@@ -74,86 +143,68 @@ export default function GalleryPage() {
             <span className="italic text-laterite">looks like at 6 am.</span>
           </>
         }
-        intro="Photographs from our tours — the tea estates and waterfalls of the hill country, the backwaters, and the spice plantations in between."
+        intro="The hill country, the backwaters, the spice plantations and the coast — the places our itineraries actually go."
       />
 
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {SHOTS.map((shot) => (
+            {SHOTS.map((shot, i) => (
               <li
-                key={shot.label}
+                key={shot.src}
                 className={shot.wide ? "sm:col-span-2" : undefined}
               >
                 <figure className="group relative flex aspect-4/3 flex-col justify-end overflow-hidden rounded-lg bg-canopy">
-                  {shot.ready && shot.src ? (
-                    <>
-                      <Image
-                        src={shot.src}
-                        alt={`${shot.label} — ${shot.caption}`}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="mono-photo object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-canopy-deep/85 via-canopy-deep/10 to-transparent"
-                      />
-                    </>
-                  ) : (
-                    /* Placeholder: the ridge motif on estate green, so an
-                       empty tile still looks deliberate. */
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-canopy to-canopy-deep"
-                    >
-                      <svg
-                        className="h-full w-full text-laterite/25"
-                        viewBox="0 0 400 300"
-                        preserveAspectRatio="xMidYMid slice"
-                        fill="none"
-                      >
-                        <path
-                          d="M0,210 C60,205 90,175 140,180 S230,140 280,150 C330,160 370,135 400,140"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        />
-                        <path
-                          d="M0,240 C70,235 110,215 170,220 S250,190 310,198 C350,203 380,190 400,193"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          opacity="0.6"
-                        />
-                      </svg>
-                    </div>
-                  )}
+                  <Image
+                    src={shot.src}
+                    alt={`${shot.label}, Kerala — ${shot.caption}`}
+                    fill
+                    // The first two tiles are usually above the fold.
+                    priority={i < 2}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Caption scrim. Kept tight to the bottom third — the
+                      photos are in colour now, and a full-height wash greys
+                      out the tea greens and backwater blues that are the
+                      reason the picture is here. */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-canopy-deep/85 via-canopy-deep/35 to-transparent"
+                  />
 
                   <figcaption className="relative p-5">
                     <p className="wordmark-serif text-lg tracking-tight text-mist">
                       {shot.label}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-mist/65">
+                    <p className="mt-1 text-xs leading-relaxed text-mist/70">
                       {shot.caption}
                     </p>
-                    {!shot.ready && (
-                      <p className="mt-2 text-[0.65rem] uppercase tracking-[0.18em] text-laterite/80">
-                        Photo coming soon
-                      </p>
-                    )}
                   </figcaption>
                 </figure>
               </li>
             ))}
           </ul>
 
+          {/* Licence attribution. CC BY-SA requires crediting the photographer
+              wherever the image is shown. */}
+          <p className="mt-8 text-xs leading-relaxed text-ink/40">
+            Photographs via Wikimedia Commons, under CC BY-SA, CC BY, CC0 and
+            public-domain licences. Thanks to{" "}
+            {SHOTS.filter((s) => s.credit)
+              .map((s) => s.credit)
+              .filter((c, i, a) => a.indexOf(c) === i)
+              .join(", ")}
+            .
+          </p>
+
           <div className="mt-16 grid gap-8 border-t border-ink/15 pt-12 sm:grid-cols-[1fr_auto] sm:items-end">
             <div>
               <h2 className="wordmark-serif max-w-lg text-2xl leading-tight tracking-tight sm:text-3xl">
-                Every photo here was taken on a trip we ran.
+                Been on a trip with us?
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink/60">
-                Send us yours after your tour and we&apos;ll add them, with
-                credit.
+                Send us your photos and we&apos;ll add them here, with credit.
               </p>
             </div>
             <Link

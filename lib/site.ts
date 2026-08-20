@@ -70,6 +70,7 @@ export const TRIPS = [
     climb: "Munnar · Idukki",
     blurb:
       "Tea estates, waterfalls, viewpoints and the Kolukkumalai sunrise. Our most complete Munnar itinerary — the full three-day circuit, day by day.",
+    image: "/images/gallery/munnar-tea.jpg",
   },
   {
     name: "Alleppey & the Backwaters",
@@ -77,6 +78,7 @@ export const TRIPS = [
     climb: "Alappuzha · Kumarakom",
     blurb:
       "A night on a private houseboat through the paddy-field canals, village stops along the way, and sunset over Vembanad Lake.",
+    image: "/images/gallery/alleppey.jpg",
   },
   {
     name: "Thekkady Wildlife & Spice",
@@ -84,6 +86,7 @@ export const TRIPS = [
     climb: "Periyar · Kumily",
     blurb:
       "Boat safari on Periyar Lake, a guided walk through cardamom and pepper plantations, and an evening of Kathakali and Kalaripayattu.",
+    image: "/images/gallery/thekkady.jpg",
   },
   {
     name: "Kerala Grand Tour",
@@ -91,6 +94,7 @@ export const TRIPS = [
     climb: "Kochi → Munnar → Thekkady → Alleppey → Kovalam",
     blurb:
       "The whole state in one run: colonial Kochi, the hill stations, the spice country, the backwaters, and the Arabian Sea beaches to finish.",
+    image: "/images/gallery/kochi.jpg",
   },
 ] as const;
 

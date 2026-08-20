@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "../components/page-hero";
 import {
@@ -182,8 +183,17 @@ export default function PackagesPage() {
               {TRIPS.map((trip) => (
                 <li
                   key={trip.name}
-                  className="grid gap-3 py-8 sm:grid-cols-[1fr_1.4fr] sm:gap-10"
+                  className="grid gap-5 py-8 sm:grid-cols-[minmax(0,14rem)_1fr_1.2fr] sm:items-start sm:gap-10"
                 >
+                  <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-canopy-deep sm:aspect-3/2">
+                    <Image
+                      src={trip.image}
+                      alt={`${trip.name} — ${trip.climb}`}
+                      fill
+                      sizes="(min-width: 640px) 14rem, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <div>
                     <h3 className="wordmark-serif text-2xl tracking-tight sm:text-[1.75rem]">
                       {trip.name}

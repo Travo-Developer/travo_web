@@ -12,7 +12,7 @@ export function SiteFooter() {
               Plan your trip
             </p>
             <h2 className="wordmark-serif mt-5 max-w-lg text-3xl leading-tight tracking-tight sm:text-5xl">
-              Call or message. We answer in Malayalam, Tamil, Hindi and English.
+              Call or message. We answer in Malayalam, Tamil and English.
             </h2>
 
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:gap-14">

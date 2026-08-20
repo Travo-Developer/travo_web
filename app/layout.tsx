@@ -115,7 +115,7 @@ const organizationLd = {
     longitude: BUSINESS.longitude,
   },
   areaServed: BUSINESS.areaServed.map((name) => ({ "@type": "Place", name })),
-  knowsLanguage: ["ml", "ta", "hi", "en"],
+  knowsLanguage: ["ml", "ta", "en"],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "../components/page-hero";
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 const VALUES = [
   {
     head: "We are from here",
-    copy: "Our team grew up in Kerala and guides in Malayalam, Tamil, Hindi and English. That is the difference between a guide reciting a script and one who knows which festival is on this week and where to eat after it.",
+    copy: "Our team grew up in Kerala and guides in Malayalam, Tamil and English. That is the difference between a guide reciting a script and one who knows which festival is on this week and where to eat after it.",
   },
   {
     head: "Private, never fixed-departure",
@@ -82,7 +83,19 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-canopy text-mist">
+        <section className="mx-auto w-full max-w-6xl px-6 pb-4 sm:px-10">
+          <div className="relative aspect-video overflow-hidden rounded-lg bg-canopy">
+            <Image
+              src="/images/gallery/kumarakom.jpg"
+              alt="The Vembanad wetlands near Kumarakom at first light"
+              fill
+              sizes="(min-width: 1152px) 72rem, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </section>
+
+        <section className="mt-20 bg-canopy text-mist sm:mt-28">
           <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-10 sm:py-24">
             <h2 className="wordmark-serif text-3xl tracking-tight sm:text-4xl">
               How we work

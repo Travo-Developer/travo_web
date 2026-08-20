@@ -17,7 +17,7 @@ export default function Home() {
           quality={85}
           /* Portrait viewports crop hard to the centre, which cuts the jeep
              out of frame — bias the crop right so it survives on phones. */
-          className="mono-photo object-cover object-[70%_38%] sm:object-center"
+          className="object-cover object-[70%_38%] sm:object-center"
         />
 
         {/* Estate-green wash. The sunrise in this photo falls on the left,
@@ -25,14 +25,10 @@ export default function Home() {
             and lifts over the jeep on the right. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-canopy/20"
-        />
-        <div
-          aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(96deg, rgba(10,11,12,0.90) 0%, rgba(10,11,12,0.76) 28%, rgba(10,11,12,0.38) 55%, rgba(10,11,12,0.06) 78%, rgba(10,11,12,0.18) 100%), linear-gradient(to bottom, rgba(10,11,12,0.55) 0%, rgba(10,11,12,0.08) 34%, rgba(10,11,12,0.00) 62%)",
+              "linear-gradient(96deg, rgba(10,11,12,0.86) 0%, rgba(10,11,12,0.70) 28%, rgba(10,11,12,0.30) 55%, rgba(10,11,12,0.02) 78%, rgba(10,11,12,0.12) 100%), linear-gradient(to bottom, rgba(10,11,12,0.50) 0%, rgba(10,11,12,0.06) 34%, rgba(10,11,12,0.00) 62%)",
           }}
         />
 
@@ -123,13 +119,22 @@ export default function Home() {
             {TRIPS.map((trip) => (
               <li
                 key={trip.name}
-                className="grid gap-3 py-8 sm:grid-cols-[1fr_1.4fr] sm:gap-10"
+                className="grid gap-5 py-8 sm:grid-cols-[minmax(0,14rem)_1fr_1.2fr] sm:items-start sm:gap-10"
               >
+                <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-canopy sm:aspect-3/2">
+                  <Image
+                    src={trip.image}
+                    alt={`${trip.name} — ${trip.climb}`}
+                    fill
+                    sizes="(min-width: 640px) 14rem, 100vw"
+                    className="object-cover"
+                  />
+                </div>
                 <div>
                   <h3 className="wordmark-serif text-2xl tracking-tight sm:text-[1.75rem]">
                     {trip.name}
                   </h3>
-                  <p className="mt-2 text-xs uppercase tracking-[0.16em] text-laterite">
+                  <p className="mt-2 text-xs uppercase tracking-[0.16em] text-laterite-deep">
                     {trip.time}
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.16em] text-ink/45">
@@ -158,7 +163,7 @@ export default function Home() {
             {[
               {
                 head: "Local guides",
-                copy: "Our team is from Kerala and guides in Malayalam, Tamil, Hindi and English. You get the places worth stopping for, not just the ones on the brochure.",
+                copy: "Our team is from Kerala and guides in Malayalam, Tamil and English. You get the places worth stopping for, not just the ones on the brochure.",
               },
               {
                 head: "Stay & travel sorted",
