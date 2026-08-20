@@ -16,8 +16,8 @@ export const SITE_URL = (
 
 export const SITE_NAME = "Travo";
 
-export const PHONE_DISPLAY = "+91 94972 92483";
-export const PHONE_TEL = "+919497292483";
+export const PHONE_DISPLAY = "+91 94451 56432";
+export const PHONE_TEL = "+919445156432";
 export const EMAIL = "travo.info365@gmail.com";
 
 /* Used by the JSON-LD LocalBusiness block. Coordinates are Munnar town. */
@@ -44,7 +44,10 @@ export const BUSINESS = {
   ],
 } as const;
 
-export const WHATSAPP = `https://wa.me/919497292483?text=${encodeURIComponent(
+/* Derived from PHONE_TEL rather than repeating the digits — wa.me wants the
+   number without a leading + or spaces. Keeps the WhatsApp link from drifting
+   out of sync when the number changes. */
+export const WHATSAPP = `https://wa.me/${PHONE_TEL.replace(/\D/g, "")}?text=${encodeURIComponent(
   "Hi Travo, I'd like to plan a Kerala trip.",
 )}`;
 
