@@ -97,10 +97,11 @@ export async function sendEnquiry(
     };
   }
 
-  // Must be a domain verified in Resend. Until one is verified, Resend's
-  // shared onboarding sender works and delivers only to the account owner.
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Travo <onboarding@resend.dev>";
-  const to = process.env.CONTACT_TO_EMAIL ?? EMAIL;
+  // Must be a domain verified in Resend. The fallback is Resend's shared
+  // onboarding sender, which delivers ONLY to the account owner's address —
+  // fine for a local smoke test, never correct in production.
+  const from = process.env.CONTACT_FROM_EMAIL || "Travo <onboarding@resend.dev>";
+  const to = process.env.CONTACT_TO_EMAIL || EMAIL;
 
   try {
     const resend = new Resend(apiKey);
