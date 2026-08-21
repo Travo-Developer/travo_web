@@ -3,11 +3,14 @@
 import { Resend } from "resend";
 import { z } from "zod";
 import { EMAIL } from "@/lib/site";
+import type { ContactField, ContactState } from "./types";
 
 /* Server Actions are reachable by direct POST, not just through the form, so
    everything below re-validates on the server regardless of the HTML
    constraints on the inputs. */
 
+/* satisfies keeps this schema's keys locked to ContactField: add a field to
+   one and the other stops compiling. */
 const schema = z.object({
   name: z
     .string()
@@ -33,20 +36,7 @@ const schema = z.object({
     .trim()
     .min(10, "Please tell us a little more (at least 10 characters).")
     .max(4000, "That message is too long."),
-});
-
-export type ContactState = {
-  status: "idle" | "success" | "error";
-  message: string;
-  errors?: Partial<Record<keyof z.infer<typeof schema>, string[]>>;
-  /** Echoed back so a failed submit doesn't wipe what the visitor typed. */
-  values?: { name: string; email: string; phone: string; message: string };
-};
-
-export const initialContactState: ContactState = {
-  status: "idle",
-  message: "",
-};
+}) satisfies z.ZodObject<Record<ContactField, z.ZodType>>;
 
 function escapeHtml(value: string) {
   return value

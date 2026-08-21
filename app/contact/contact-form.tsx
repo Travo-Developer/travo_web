@@ -1,7 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import { initialContactState, sendEnquiry } from "./actions";
+import { sendEnquiry } from "./actions";
+import { initialContactState } from "./types";
 
 const fieldBase =
   "w-full rounded-md border bg-white px-4 py-3 text-base text-ink placeholder:text-ink/35 transition-colors focus:border-laterite focus:outline-2 focus:outline-offset-2 focus:outline-laterite";
