@@ -16,8 +16,17 @@ export const SITE_URL = (
 
 export const SITE_NAME = "Travo";
 
+/* The primary line: the one every "Call us" button, the header and the
+   WhatsApp link point at. Change this and those follow. */
 export const PHONE_DISPLAY = "+91 94451 56432";
 export const PHONE_TEL = "+919445156432";
+
+/* A second line, listed alongside the primary one on the contact page and in
+   the footer. Deliberately NOT used for WhatsApp or the JSON-LD telephone
+   field — both stay on the primary number so there is one canonical contact
+   point for search engines and one WhatsApp thread to answer. */
+export const PHONE_ALT_DISPLAY = "+91 94972 92483";
+export const PHONE_ALT_TEL = "+919497292483";
 export const EMAIL = "travo.info365@gmail.com";
 
 /* Used by the JSON-LD LocalBusiness block. Coordinates are Munnar town. */

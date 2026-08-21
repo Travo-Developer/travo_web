@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { PageHero } from "../components/page-hero";
 import { ContactForm } from "./contact-form";
-import { EMAIL, PHONE_DISPLAY, PHONE_TEL, SITE_URL, WHATSAPP } from "@/lib/site";
+import {
+  EMAIL,
+  PHONE_ALT_DISPLAY,
+  PHONE_ALT_TEL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  SITE_URL,
+  WHATSAPP,
+} from "@/lib/site";
 
 const DESCRIPTION =
   "Enquire about a Kerala tour — send us your dates and group size, or call and WhatsApp us directly. We answer in Malayalam, Tamil and English.";
@@ -93,6 +101,12 @@ export default function ContactPage() {
                     className="wordmark-serif mt-1 block text-2xl tracking-tight underline decoration-laterite-deep decoration-1 underline-offset-[6px] transition-colors hover:text-laterite-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-laterite"
                   >
                     {PHONE_DISPLAY}
+                  </a>
+                  <a
+                    href={`tel:${PHONE_ALT_TEL}`}
+                    className="wordmark-serif mt-2 block text-xl tracking-tight underline decoration-laterite-deep/60 decoration-1 underline-offset-[6px] transition-colors hover:text-laterite-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-laterite"
+                  >
+                    {PHONE_ALT_DISPLAY}
                   </a>
                 </div>
 

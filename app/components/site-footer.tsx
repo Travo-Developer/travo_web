@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { EMAIL, NAV, PHONE_DISPLAY, PHONE_TEL, WHATSAPP } from "@/lib/site";
+import {
+  EMAIL,
+  NAV,
+  PHONE_ALT_DISPLAY,
+  PHONE_ALT_TEL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  WHATSAPP,
+} from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -25,6 +33,12 @@ export function SiteFooter() {
                   className="wordmark-serif mt-1 block text-2xl tracking-tight underline decoration-laterite-deep decoration-1 underline-offset-[6px] transition-colors hover:text-laterite-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-laterite sm:text-3xl"
                 >
                   {PHONE_DISPLAY}
+                </a>
+                <a
+                  href={`tel:${PHONE_ALT_TEL}`}
+                  className="wordmark-serif mt-2 block text-xl tracking-tight underline decoration-laterite-deep/60 decoration-1 underline-offset-[6px] transition-colors hover:text-laterite-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-laterite sm:text-2xl"
+                >
+                  {PHONE_ALT_DISPLAY}
                 </a>
               </div>
               <div>
