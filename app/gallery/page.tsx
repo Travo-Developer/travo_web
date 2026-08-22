@@ -94,6 +94,17 @@ const SHOTS: Shot[] = [
     tall: true,
   },
   {
+    src: "/images/gallery/jeep-hilltop.jpg",
+    label: "Up the Slope",
+    caption: "Nosed up the hill track, monsoon cloud sitting low over the ridge.",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/jeep-commander.jpg",
+    label: "At the Stand",
+    caption: "Waiting on the roadside for the next run up to the viewpoint.",
+  },
+  {
     src: "/images/gallery/mattupetty.jpg",
     label: "Mattupetty Dam",
     caption: "Day 1 — still water under the ridge.",
